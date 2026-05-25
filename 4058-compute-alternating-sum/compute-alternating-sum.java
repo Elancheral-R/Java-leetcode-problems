@@ -6,13 +6,9 @@ class Solution {
         for(int number:nums)
         {
             if(toggle)
-                {
-                    sum+=number;
-                }
+                sum+=number;
             else
-            {
                 sum-=number;
-            }
             toggle=(!toggle);
         }
         return sum;
