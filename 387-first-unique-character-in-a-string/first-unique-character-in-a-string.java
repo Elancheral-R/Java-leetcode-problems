@@ -5,12 +5,11 @@ class Solution {
         {
             arr[ch-'a']++;
         }
-        int a=-1;
         for(char ch:s.toCharArray())
         {
-            a++;
+            // a++;
             if(arr[ch-'a']==1)
-                return a;
+                return s.indexOf(ch);
         }
         return -1;
     }
