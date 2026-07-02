@@ -10,7 +10,6 @@ public class Solution extends VersionControl {
                 if(m==0 || isBadVersion((int)(m-1))==false)return (int)m;
                 b=m-1;
             }else a=m+1;
-            System.out.println(m);
         }
         return -1;
     }
