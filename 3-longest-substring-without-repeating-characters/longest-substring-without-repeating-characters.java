@@ -4,9 +4,7 @@ class Solution {
         List<Character> li = new ArrayList<>();
         int max=0;
         int counter=0;
-        if(s.length() == 0)
-            return 0;
-            
+
         for(int i=0;i<s.length();i++)
         {
             if(!li.contains(s.charAt(i)))
