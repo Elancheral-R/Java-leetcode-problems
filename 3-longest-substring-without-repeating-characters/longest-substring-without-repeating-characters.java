@@ -2,7 +2,7 @@ class Solution {
     public int lengthOfLongestSubstring(String s) 
     {
         List<Character> li = new ArrayList<>();
-        int max=1;
+        int max=0;
         int counter=0;
         if(s.length() == 0)
             return 0;
