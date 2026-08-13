@@ -1,27 +1,22 @@
 class Solution {
-    public boolean predictTheWinner(int[] nums) {
+    public boolean predictTheWinner(int[] A) {
+        int n = A.length;
+        if ((n & 1) == 0) return true;
 
-        int n = nums.length;
         int[][] dp = new int[n][n];
+        for (int[] r : dp) 
+            Arrays.fill(r, -1);
+        
+        return maxDiff(0, n - 1, A, dp) >= 0;
+    }
 
-        for (int i = 0; i < n; i++) {
-            dp[i][i] = nums[i];
-        }
-
-        for (int len = 2; len <= n; len++) {
-
-            for (int i = 0; i + len <= n; i++) {
-
-                int j = i + len - 1;
-
-                int left = nums[i] - dp[i + 1][j];
-
-                int right = nums[j] - dp[i][j - 1];
-
-                dp[i][j] = Math.max(left, right);
-            }
-        }
-
-        return dp[0][n - 1] >= 0;
+    private int maxDiff(int i, int j, int[] A, int[][] dp) {
+        if (dp[i][j] != -1) return dp[i][j];        
+        if (i == j) return dp[i][j] = A[i];
+        
+        return dp[i][j] = Math.max(
+            A[i] - maxDiff(i + 1, j, A, dp),
+            A[j] - maxDiff(i, j - 1, A, dp)
+        );
     }
 }
