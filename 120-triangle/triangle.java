@@ -1,27 +1,24 @@
 class Solution {
     public int minimumTotal(List<List<Integer>> triangle) {
 
-        int n = triangle.size();
+        for (int i = 1; i < triangle.size(); i++) {
 
-        // dp stores the minimum path sum from the current row
-        // to the bottom
-        int[] dp = new int[n];
+            for (int j = 0; j < triangle.get(i).size(); j++) {
 
-        // Start with the last row
-        for (int i = 0; i < n; i++) {
-            dp[i] = triangle.get(n - 1).get(i);
-        }
+                int left = Integer.MAX_VALUE;
+                int right = Integer.MAX_VALUE;
 
-        // Move from second-last row towards the top
-        for (int row = n - 2; row >= 0; row--) {
+                if (j > 0)
+                    left = triangle.get(i - 1).get(j - 1);
 
-            for (int col = 0; col <= row; col++) {
+                if (j < triangle.get(i - 1).size())
+                    right = triangle.get(i - 1).get(j);
 
-                dp[col] = triangle.get(row).get(col)
-                         + Math.min(dp[col], dp[col + 1]);
+                triangle.get(i).set(j,
+                    triangle.get(i).get(j) + Math.min(left, right));
             }
         }
 
-        return dp[0];
+        return Collections.min(triangle.get(triangle.size() - 1));
     }
 }
