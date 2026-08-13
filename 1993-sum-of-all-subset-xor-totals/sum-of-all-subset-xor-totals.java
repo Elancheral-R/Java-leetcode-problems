@@ -1,21 +1,9 @@
 class Solution {
     public int subsetXORSum(int[] nums) {
-        return findXOR(nums, 0, 0);
-    }
-
-    private int findXOR(int[] nums, int index, int xor) {
-
-        // All elements have been considered
-        if (index == nums.length) {
-            return xor;
+        int total = 0;
+        for (int num : nums) {
+            total |= num;  // Step 1: Compute bitwise OR of all numbers
         }
-
-        // Don't take nums[index]
-        int exclude = findXOR(nums, index + 1, xor);
-
-        // Take nums[index]
-        int include = findXOR(nums, index + 1, xor ^ nums[index]);
-
-        return exclude + include;
+        return total * (1 << (nums.length - 1));  // Step 2: Multiply by 2^(n-1)
     }
 }
